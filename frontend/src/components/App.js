@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Form, FormGroup, Label, Input, FormText , Row, Col} from 'reactstrap';
-import './App.css';
+import '../styling/App.css';
 
 class App extends Component {
   constructor(props) {
@@ -14,7 +14,9 @@ class App extends Component {
             maxPrice: '',
             minNumReviews: '',
             newListing: '',
-            minRating: ''
+            minRating: '',
+            superhost: '',
+            minBathrooms: ''
     }
   }
   render() {
@@ -111,6 +113,26 @@ class App extends Component {
         onChange={e => {
                 this.setState({ minRating: e.target.value })
               }}/>
+      </FormGroup>
+      </Col>
+      </Row>
+      <Row form>
+      <Col md={6}>
+      <FormGroup>
+        <Label for="exampleEmail">Superhost?:</Label>
+        <Input type="text" name="hostField" id="hostField" placeholder="ex: Yes"
+        onChange={e => {
+                this.setState({ superhost: e.target.value })
+              }} />
+      </FormGroup>
+      </Col>
+      <Col md={6}>
+      <FormGroup>
+        <Label for="exampleEmail">Minimum Number of Bathrooms:</Label>
+        <Input type="text" name="bathroomField" id="bathroomField" placeholder="ex: 1.5"
+        onChange={e => {
+                this.setState({ minBathrooms: e.target.value })
+              }} />
       </FormGroup>
       </Col>
       </Row>
