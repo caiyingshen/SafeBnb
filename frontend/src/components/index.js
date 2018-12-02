@@ -3,5 +3,6 @@ import ResultsPage from './ResultsPage'
 
 export {
         App,
+        Map,
         ResultsPage
 }

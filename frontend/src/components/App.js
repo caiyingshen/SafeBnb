@@ -1,6 +1,17 @@
 import React, { Component } from 'react';
 import { Button, Form, FormGroup, Label, Input, FormText , Row, Col} from 'reactstrap';
 import '../styling/App.css';
+import { Link, Router, Route } from "react-router-dom";
+
+const AppRouter = () => (
+  <Router>
+    <div>
+      <Route exact path="/" component={App} />
+      <Route path="/map" component={Map} />
+    </div>
+  </Router>
+);
+
 
 class App extends Component {
   constructor(props) {
@@ -22,7 +33,7 @@ class App extends Component {
   render() {
     return (
       <div className = "App">
-        <h>SafeBnb</h>
+        <div className="title">SafeBnb</div>
         <Form>
         <Row form>
         <Col md={6}>
@@ -63,7 +74,6 @@ class App extends Component {
               }}/>
         </FormGroup>
         </Col>
-        </Row>
         <Col md={6}>
         <FormGroup>
           <Label for="exampleEmail">How many beds do you need?</Label>
@@ -73,6 +83,7 @@ class App extends Component {
               }}/>
         </FormGroup>
         </Col>
+        </Row>
       </Form>
       <br></br>
       <h>What are your preferences?</h>
@@ -136,9 +147,10 @@ class App extends Component {
       </FormGroup>
       </Col>
       </Row>
-      <Button color="blue" >
-                  Submit!
-        </Button>
+
+      <Link to={{ pathname: './map' }}>
+            <Button>Submit!</Button>
+         </Link>
 
       </div>
     );

@@ -4,10 +4,11 @@
   "private": true,
   "engines": {
     "npm": "6.4.x"
-},
+  },
   "dependencies": {
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
+    "react-router-dom": "^4.3.1",
     "react-scripts": "2.0.5",
     "react-table": "^6.8.6",
     "reactstrap": "^6.5.0"
