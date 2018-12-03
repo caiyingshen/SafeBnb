@@ -25,7 +25,26 @@
 }
 
 .title {
-  font-size: 30px;
+  font-size: 45px;
+  font-style: bold;
+  font-family: 'Geneva', sans-serif;
+}
+
+.wrapper {
+        padding-left: 5%;
+        padding-right: 40%;
+        padding-top: 1%;
+        padding-bottom: 1%;
+        border-top: 1px solid blue;
+        border-bottom: 1px solid blue;
+        background-color: white;
+}
+
+.background {
+        align-self: center;
+        background-color: #aabfe2;
+        padding-top: 5%;
+        padding-bottom: 5%;
 }
 
 @keyframes App-logo-spin {

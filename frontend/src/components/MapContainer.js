@@ -1,29 +1,30 @@
 import React, { Component } from 'react';
-import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
+import { Map, InfoWindow, Marker } from './';
+import { google, GoogleApiWrapper } from 'google-maps-react'
 
 class MapContainer extends Component {
-  getInitialState: function() {
+  getInitialState = () => {
     return {
       showingInfoWindow: false,
       activeMarker: {},
       selectedPlace: {}
-    };
-  },
+    }
+};
 
-  onMarkerClick: function(props, marker, e) {
+  onMarkerClick = (props, marker, e) => {
     this.setState({
       selectedPlace: props,
       activeMarker: marker,
       showingInfoWindow: true
-    });
-  },
+    })
+};
 
-  onInfoWindowClose: function() {
+  onInfoWindowClose = () => {
     this.setState({
       showingInfoWindow: false,
       activeMarker: null
-    });
-  },
+    })
+};
 
   render() {
     const style = {
@@ -31,26 +32,20 @@ class MapContainer extends Component {
       height: '100vh'
     }
     // boston coordinates
-    const pos = {lat: 42.3601, lng: 71.0589}
+    // const {google} = this.props;
+    // const maps = google.maps;
+    // let lati = 42.3601;
+    // let long = 71.0589;
+    // const mapCenter = new maps.LatLng(lati, long);
     return (
       <div style={style}>
-        <Map google={this.props.google}>
-          <Marker position={pos} />
-
-          <InfoWindow
-            marker={this.state.activeMarker}
-            visible={this.state.showingInfoWindow}
-            onClose={this.onInfoWindowClose}>
-              <div>
-                <h1>{this.state.selectedPlace.name}</h1>
-              </div>
-          </InfoWindow>
-        </Map>
+      <Map google={this.props.google}>
+      </Map>
       </div>
     );
   }
 }
 
 export default GoogleApiWrapper({
-  apiKey: (AIzaSyAyesbQMyKVVbBgKVi2g6VX7mop2z96jBo)
+  apiKey: "AIzaSyAQDXd9PaHTytT46Gxa1rdyGN_g4pQW8bA"
 })(MapContainer);

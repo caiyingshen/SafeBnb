@@ -59,15 +59,16 @@ export class Marker extends Component {
   }
 }
 
-Marker.PropTypes = {
+Marker.propTypes = {
   position: PropTypes.object,
   map: PropTypes.object
 };
 
-evtNames.forEach(e => (Marker.PropTypes[camelize(e)] = PropTypes.func));
+evtNames.forEach(e => (Marker.propTypes[camelize(e)] = PropTypes.func));
 
 Marker.defaultProps = {
-  name: 'Marker'
+  name: 'Marker',
+  position: { lat: 41.59, lng: 72.0274}
 };
 
 export default Marker;

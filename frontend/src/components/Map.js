@@ -30,8 +30,8 @@ export class Map extends Component {
     // const {lat, lng} = this.props.initialCenter;
     this.state = {
       currentLocation: {
-        lat: this.props.initialCenter.lat,
-        lng: this.props.initialCenter.lng
+        lat: 42,
+        lng: 71
       }
     };
 
@@ -52,7 +52,7 @@ export class Map extends Component {
     }
   }
 
-  // loads the current location of the user
+  //loads the current location of the user
   componentDidMount() {
     // console.log("WIEJWORFHBDJDIJOFWEHGRFDB");
     if (this.props.centerAroundCurrentLocation) {
@@ -82,15 +82,15 @@ export class Map extends Component {
 
       // let {initialCenter, zoom} = this.props;
       const {lat, lng} = this.state.currentLocation;
-      // let zoom = 14;
-      // let lat = 42.3601;
-      // let lng = 71.0589;
-      const center = new maps.LatLng(lat, lng);
+      let zoom = 14;
+      let lati = 42.3601;
+      let long = 71.0589;
+      const center = new maps.LatLng(lati, long);
       const mapConfig = Object.assign({}, {
         center: center,
         zoom: this.props.zoom
       });
-
+      console.log(center)
       this.map = new maps.Map(node, mapConfig);
 
       evtNames.forEach(e => {
@@ -114,7 +114,7 @@ export class Map extends Component {
           center = new google.maps.LatLng(center.lat, center.lng);
         }
 
-        // map.panTo(center)
+         map.panTo(center)
         map.setCenter(center);
         maps.event.trigger(map, 'recenter');
     }
@@ -177,7 +177,7 @@ export class Map extends Component {
         <div style={style} ref="map">
           Loading map...
         </div>
-        {this.renderChildren()}
+        {this.loadMap()}
       </div>
     );
   }
@@ -198,15 +198,18 @@ Map.propTypes = {
 evtNames.forEach(e => (Map.propTypes[camelize(e)] = PropTypes.func));
 
 Map.defaultProps = {
-  zoom: 14,
+  zoom: 3,
   // Boston
   initialCenter: {
-    lat: 42.3601,
-    lng: 71.0589
+    lat: 51.5074,
+    lng: 0.1278
   },
 
-  center: {},
-  centerAroundCurrentLocation: false,
+  center: {
+    lat: 51.5074,
+    lng: 0.1278
+  },
+  centerAroundCurrentLocation: true,
   style: {},
   containerStyle: {},
   visible: true

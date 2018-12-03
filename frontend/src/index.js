@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Route, BrowserRouter as Router} from "react-router-dom";
 import './index.css';
-import { App, Map } from './components/';
+import { App, Map, MapPage } from './components/';
 import * as serviceWorker from './serviceWorker';
 
 
@@ -10,7 +10,7 @@ ReactDOM.render(
   <Router>
     <div>
       <Route exact path="/" component={App} />
-      <Route path="/map" component={Map} />
+      <Route path="/map" component={MapPage} />
     </div>
   </Router>,
   document.getElementById('root'));
