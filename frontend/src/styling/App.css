@@ -20,6 +20,11 @@
   color: white;
 }
 
+.mapPage {
+        width: 100px;
+        height: 100px; 
+}
+
 .App-link {
   color: #61dafb;
 }
@@ -31,7 +36,7 @@
 }
 
 .infowindow {
-        font-size: 20px; 
+        font-size: 20px;
 }
 
 .wrapper {

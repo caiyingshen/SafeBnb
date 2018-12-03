@@ -3,6 +3,7 @@ import { Button, Form, FormGroup, Label, Input, FormText , Row, Col} from 'react
 import '../styling/App.css';
 import { Link, Router, Route } from "react-router-dom";
 import Map from './Map';
+import MapPage from './MapPage'
 
 class App extends Component {
   constructor(props) {
@@ -14,17 +15,19 @@ class App extends Component {
             returnDate: '',
             numberOfBeds: '',
             maxPrice: '',
-            minNumReviews: '',
-            newListing: '',
-            minRating: '',
-            superhost: '',
-            minBathrooms: ''
+            display: false
     }
   }
   render() {
+          let mapDisplay
+          if (this.state.display) {
+                  mapDisplay = <div className="mapPage"><MapPage/></div>
+          } else {
+                  mapDisplay = "Results Appear Here"
+          }
     return (
             <div className="background">
-      <div className = "wrapper">
+      <div className="wrapper">
         <div className="title">safebnb</div>
         <Form>
         <FormGroup>
@@ -62,15 +65,26 @@ class App extends Component {
                 this.setState({ numberOfBeds: e.target.value })
               }}/>
         </FormGroup>
+        <FormGroup>
+          <Label for="exampleEmail">Maximum Price?</Label>
+          <Input type="text" name="priceField" id="bedField" placeholder="ex: 200"
+          onChange={e => {
+                this.setState({ maxPrice: e.target.value })
+              }}/>
+        </FormGroup>
       </Form>
       <br></br>
 
 
-      <Link to={{ pathname: './map' }}>
-            <Button color="primary">Submit!</Button>
-         </Link>
+      <Button color="primary" onClick={() => this.setState({display: true})}>
+      Submit!
+      </Button>
+
+      <br></br>
 
       </div>
+
+      {mapDisplay}
       </div>
     );
   }
