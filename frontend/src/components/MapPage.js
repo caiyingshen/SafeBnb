@@ -82,5 +82,5 @@ createMarkers = markers =>
 }
 
 export default GoogleApiWrapper({
-  apiKey: 'AIzaSyAQDXd9PaHTytT46Gxa1rdyGN_g4pQW8bA'
+  apiKey: 'API_KEY_HERE'
 })(MapPage);
