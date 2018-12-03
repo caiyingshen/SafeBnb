@@ -6,10 +6,12 @@ from flask import jsonify
 mysql = MySQL()
 app = Flask(__name__)
 
-app.config['MYSQL_DATABASE_USER'] = 'root'
-app.config['MYSQL_DATABASE_PASSWORD'] = 'Chris123'
+
+
+app.config['MYSQL_DATABASE_USER'] = 'b123288ad4eabf'
+app.config['MYSQL_DATABASE_PASSWORD'] = '36a4a28c'
 app.config['MYSQL_DATABASE_DB'] = 'airbnb_data'
-app.config['MYSQL_DATABASE_HOST'] = 'localhost'
+app.config['MYSQL_DATABASE_HOST'] = 'us-cdbr-iron-east-01.cleardb.net'
 
 mysql.init_app(app)
 api = Api(app)
