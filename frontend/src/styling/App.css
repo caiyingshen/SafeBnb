@@ -30,6 +30,10 @@
   font-family: 'Geneva', sans-serif;
 }
 
+.infowindow {
+        font-size: 20px; 
+}
+
 .wrapper {
         padding-left: 5%;
         padding-right: 40%;
