@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button, Form, FormGroup, Label, Input, FormText , Row, Col} from 'reactstrap';
 import '../styling/App.css';
 import { Link, Router, Route } from "react-router-dom";
+import Map from './Map';
 
 const AppRouter = () => (
   <Router>

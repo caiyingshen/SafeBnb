@@ -1,16 +1,26 @@
 import React, { Component } from 'react';
-const evtNames = ['click', 'mouseover'];
-const camelize = function(str) {
-  return str.split(' ').map(function(word){
-    return word.charAt(0).toUpperCase() + word.slice(1);
-  }).join('');
-}
+// import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
+import PropTypes from 'prop-types';
+import { camelize } from '../helpers';
 
-class Marker extends Component {
+const evtNames = ['click', 'mouseover'];
+
+export class Marker extends Component {
   componentDidUpdate(prevProps) {
     if ((this.props.map !== prevProps.map) ||
       (this.props.position !== prevProps.position)) {
+        if (this.marker) {
+          this.marker.setMap(null);
+        }
+
         this.renderMarker();
+    }
+  }
+
+  // removes markers
+  componentWillUnmount() {
+    if (this.marker) {
+      this.marker.setMap(null);
     }
   }
 
@@ -20,26 +30,28 @@ class Marker extends Component {
     } = this.props;
 
     let pos = position || mapCenter;
-    position = new google.maps.LatLng(pos.lat, pos.lng);
+    if (!(pos instanceof google.maps.LatLng)) {
+      pos = new google.maps.LatLng(pos.lat, pos.lng);
+    }
 
     const pref = {
       map: map,
-      position: position
+      position: pos
     };
     this.marker = new google.maps.Marker(pref);
 
     evtNames.forEach(e => {
       this.marker.addListener(e, this.handleEvent(e));
-    })
+    });
   }
 
   handleEvent(evtName) {
     return (e) => {
-      const evtName = `on${camelize(evt)}`
-      if (this.props[evtName]) {
-        this.props[evtName](this.props, this.marker, e);
+      const handlerName = `on${camelize(evtName)}`;
+      if (this.props[handlerName]) {
+        this.props[handlerName](this.props, this.marker, e);
       }
-    }
+    };
   }
 
   render() {
@@ -47,7 +59,15 @@ class Marker extends Component {
   }
 }
 
-Marker.propTypes = {
-  position: React.PropTypes.object,
-  map: React.PropTypes.object
-}
+Marker.PropTypes = {
+  position: PropTypes.object,
+  map: PropTypes.object
+};
+
+evtNames.forEach(e => (Marker.PropTypes[camelize(e)] = PropTypes.func));
+
+Marker.defaultProps = {
+  name: 'Marker'
+};
+
+export default Marker;

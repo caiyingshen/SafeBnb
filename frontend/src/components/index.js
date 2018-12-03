@@ -1,5 +1,6 @@
-import App from './App'
-import ResultsPage from './ResultsPage'
+import App from './App';
+import Map from './Map';
+import ResultsPage from './ResultsPage';
 
 export {
         App,
