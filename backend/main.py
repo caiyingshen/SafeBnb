@@ -6,11 +6,9 @@ from flask import jsonify
 mysql = MySQL()
 app = Flask(__name__)
 
-
-
 app.config['MYSQL_DATABASE_USER'] = 'b123288ad4eabf'
 app.config['MYSQL_DATABASE_PASSWORD'] = '36a4a28c'
-app.config['MYSQL_DATABASE_DB'] = 'airbnb_data'
+app.config['MYSQL_DATABASE_DB'] = 'heroku_d1a275da0db8738'
 app.config['MYSQL_DATABASE_HOST'] = 'us-cdbr-iron-east-01.cleardb.net'
 
 mysql.init_app(app)
@@ -23,7 +21,10 @@ def search():
     args = [min_beds,max_price]
     conn = mysql.connect()
     cursor = conn.cursor()
-    cursor.callproc('search', args)
+#   cursor.callproc('search', args)
+    searchfunction = 'SELECT *,@curRank := @curRank + 1 FROM airbnbs INNER JOIN scores on airbnbs.airbnb_id = scores.airbnb_id, (SELECT @curRank := 0) r WHERE airbnbs.num_beds > ' + str(min_beds) + ' AND ' + str(max_price) + ' > airbnbs.price ORDER BY score;'
+    print(searchfunction)
+    cursor.execute(searchfunction)
     data = cursor.fetchall()
     results_list = []
     for result in data:
@@ -47,7 +48,9 @@ def search():
 
 @app.route('/')
 def hello():
-	return 'Hello'
+    conn = mysql.connect()
+    cursor = conn.cursor()
+    return 'Hello'
 
 if __name__ == '__main__':
     app.run(debug=True)
