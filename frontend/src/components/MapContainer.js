@@ -31,12 +31,7 @@ class MapContainer extends Component {
       width: '100vw',
       height: '100vh'
     }
-    // boston coordinates
-    // const {google} = this.props;
-    // const maps = google.maps;
-    // let lati = 42.3601;
-    // let long = 71.0589;
-    // const mapCenter = new maps.LatLng(lati, long);
+
     return (
       <div style={style}>
       <Map google={this.props.google}>

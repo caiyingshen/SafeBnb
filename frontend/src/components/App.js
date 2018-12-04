@@ -4,6 +4,7 @@ import '../styling/App.css';
 import { Link, Router, Route } from "react-router-dom";
 import Map from './Map';
 import MapPage from './MapPage'
+import { getResults } from './ApiWrapper'
 
 class App extends Component {
   constructor(props) {
@@ -15,13 +16,14 @@ class App extends Component {
             returnDate: '',
             numberOfBeds: '',
             maxPrice: '',
-            display: false
+            display: false,
+            markers: []
     }
   }
   render() {
           let mapDisplay
           if (this.state.display) {
-                  mapDisplay = <div className="mapPage"><MapPage/></div>
+                  mapDisplay = <div className="mapPage"><MapPage markers={this.state.markers}/></div>
           } else {
                   mapDisplay = "Results Appear Here"
           }
@@ -76,7 +78,14 @@ class App extends Component {
       <br></br>
 
 
-      <Button color="primary" onClick={() => this.setState({display: true})}>
+      <Button color="primary" onClick={() =>
+              {this.setState({display: true})
+              getResults(this.state.numberOfBeds, this.state.maxPrice).then(results=>
+                      {this.setState({ markers: results})
+                      console.log(this.state.markers)})
+
+
+       }}>
       Submit!
       </Button>
 

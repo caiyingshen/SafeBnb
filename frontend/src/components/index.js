@@ -5,6 +5,7 @@ import MapContainer from './MapContainer'
 import InfoWindow from './InfoWindow'
 import Marker from './Marker'
 import MapPage from './MapPage'
+import { getResults } from './ApiWrapper'
 
 export {
         App,
@@ -13,5 +14,6 @@ export {
         MapContainer,
         MapPage,
         Marker,
-        InfoWindow
+        InfoWindow,
+        getResults
 }
